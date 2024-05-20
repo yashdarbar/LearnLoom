@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const Logo = () => {
     return (
-        <div>
-            <Image src="/logo.svg" alt="logo" height={60} width={80} />
+        <div className="flex justify-center mt-3">
+            <Image src="/logo.svg" alt="logo" height={50} width={70} />
         </div>
     );
 };
