@@ -27,14 +27,22 @@ const SideBarItem = ({ icon: Icon, href, label }: SideBarItemProps) => {
                 onClick={onClick}
                 type="button"
                 className={cn(
-                    "flex items-center gap-x-1.5 text-[#7AB2B2] font-[500] text-xl pl-10 py-2 transition-all hover:text-[#4D869C] hover:bg-[#CDE8E5]",
+                    "flex items-center gap-x-1.5 text-[#7AB2B2] font-[500] text-sm pl-10 transition-all hover:text-[#4D869C] hover:bg-[#CDE8E5]",
                     isActive && "bg-[#CDE8E5] text-[#4D869C]"
                 )}
             >
-                <div>
-                    <Icon />
+                <div className="flex items-center gap-x-2 py-4">
+                    <div>
+                        <Icon />
+                    </div>
+                    {label}
                 </div>
-                {label}
+                <div
+                    className={cn(
+                        "ml-auto opacity-0 h-full transition-all border-2 border-[#4D869C]",
+                        isActive && "opacity-100"
+                    )}
+                />
             </button>
         </div>
     );
