@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
     userName: z.string().min(2, {
@@ -26,51 +26,58 @@ const formSchema = z.object({
 });
 
 const CreatePage = () => {
+    //const form = useForm();
+    const router = useRouter();
 
-  //const form = useForm();
-  const router = useRouter();
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            userName: "",
+        },
+    });
 
-  const form = useForm<z.infer<typeof formSchema>>({
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-          userName: "",
-      },
-  });
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            const response = await axios.post("api/course/", values);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-      console.log(values);
-  }
+        } catch {
+            toast.error(
+                "Something went wrong"
+            )
+        }
+    }
 
-  return (
-      <div>
-          CreatePage
-          <div>
-              <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)}>
-                      <FormField
-                          control={form.control}
-                          name="userName"
-                          render={({ field }) => (
-                              <FormItem>
-                                  <FormLabel>Username</FormLabel>
-                                  <FormControl>
-                                      <Input
-                                          placeholder="userName"
-                                          {...field}
-                                      />
-                                  </FormControl>
-                                  <FormDescription>
-                                      This is your public display name.
-                                  </FormDescription>
-                                  <FormMessage />
-                              </FormItem>
-                          )} />
-                      <Button type="submit">Submit</Button>
-                  </form>
-              </Form>
-          </div>
-      </div>
-  );
-}
+    return (
+        <div>
+            CreatePage
+            <div>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)}>
+                        <FormField
+                            control={form.control}
+                            name="userName"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Username</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder="userName"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        This is your public display name.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <Button type="submit">Submit</Button>
+                    </form>
+                </Form>
+            </div>
+        </div>
+    );
+};
 
-export default CreatePage
+export default CreatePage;
