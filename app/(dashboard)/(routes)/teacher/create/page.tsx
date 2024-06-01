@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const formSchema = z.object({
     userName: z.string().min(2, {
@@ -36,6 +37,9 @@ const CreatePage = () => {
         },
     });
 
+    const {isSubmitting, isValid} = form.formState;
+
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const response = await axios.post("api/course/", values);
@@ -48,11 +52,13 @@ const CreatePage = () => {
     }
 
     return (
-        <div>
-            CreatePage
+        <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
             <div>
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="space-y-8 mt-8"
+                    >
                         <FormField
                             control={form.control}
                             name="userName"
@@ -61,6 +67,7 @@ const CreatePage = () => {
                                     <FormLabel>Username</FormLabel>
                                     <FormControl>
                                         <Input
+                                            disabled={isSubmitting}
                                             placeholder="userName"
                                             {...field}
                                         />
@@ -72,7 +79,20 @@ const CreatePage = () => {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit">Submit</Button>
+                        <div className="flex items-center gap-x-2  ">
+                            <Link href="/">
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    className="mr-5"
+                                >
+                                    cancel
+                                </Button>
+                            </Link>
+                            <Button type="submit" className="ml-5" disabled={!isValid || isSubmitting}>
+                                Submit
+                            </Button>
+                        </div>
                     </form>
                 </Form>
             </div>
