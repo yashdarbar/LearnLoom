@@ -8,7 +8,7 @@ export async function POST(req: Request) {
         console.log("id", userId);
         const { title } = await req.json();
 
-        console.log(userId);
+        //console.log(userId);
 
         if (!userId) {
             return NextResponse.json(
