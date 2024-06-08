@@ -21,7 +21,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 
 const formSchema = z.object({
-    userName: z.string().min(2, {
+    title: z.string().min(2, {
         message: "Username must be at least 2 <characters></characters>",
     }),
 });
@@ -33,7 +33,7 @@ const CreatePage = () => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            userName: "",
+            title: "",
         },
     });
 
@@ -43,7 +43,9 @@ const CreatePage = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const response = await axios.post("/api/courses", values);
+            console.log(response);
             router.push(`/teacher/courses/${response.data.id}`);
+            toast.success("Course created");
         } catch {
             toast.error(
                 "Something went wrong"
@@ -61,14 +63,14 @@ const CreatePage = () => {
                     >
                         <FormField
                             control={form.control}
-                            name="userName"
+                            name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Username</FormLabel>
+                                    <FormLabel>title</FormLabel>
                                     <FormControl>
                                         <Input
                                             disabled={isSubmitting}
-                                            placeholder="userName"
+                                            placeholder="title"
                                             {...field}
                                         />
                                     </FormControl>
