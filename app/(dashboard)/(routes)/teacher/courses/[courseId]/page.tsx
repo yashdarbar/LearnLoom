@@ -30,8 +30,14 @@ const CourseId = async ({ params }: { params: { courseId: string } }) => {
     const completedFields = allTheFields.filter(Boolean).length;
     const completedText = `(${completedFields}/${totalFields})`
 
-    return <div>CourseId: {params.courseId}
-    <div>{completedText}</div></div>;
+    return <div className="p-6">
+        <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-y-2">
+                <h1 className="text-2xl font-medium">Course setup</h1>
+                <span>Complete all fields {completedText}</span>
+            </div>
+        </div>
+    </div>;
 };
 
 export default CourseId;
