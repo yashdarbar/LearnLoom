@@ -37,6 +37,13 @@ const CourseId = async ({ params }: { params: { courseId: string } }) => {
                 <span>Complete all fields {completedText}</span>
             </div>
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14">
+            <div>
+                <div className="flex items-center gap-x-2">
+                    <h1 className="text-xl">Customize your course</h1>
+                </div>
+            </div>
+        </div>
     </div>;
 };
 
