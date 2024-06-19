@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { LayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
+import TitleForm from "./_components/title-form";
 
 const CourseId = async ({ params }: { params: { courseId: string } }) => {
 
@@ -42,9 +43,10 @@ const CourseId = async ({ params }: { params: { courseId: string } }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14">
             <div>
                 <div className="flex items-center gap-x-2">
-                    <IconBagde icon={LayoutDashboard} variant={"success"}/>
+                    <IconBagde icon={LayoutDashboard} />
                     <h1 className="text-xl">Customize your course</h1>
                 </div>
+                <TitleForm initialData={course} courseId={course.id}/>
             </div>
         </div>
     </div>;
