@@ -1,5 +1,7 @@
+import { IconBagde } from "@/components/icon-bagde";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
+import { LayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
 
 const CourseId = async ({ params }: { params: { courseId: string } }) => {
@@ -40,6 +42,7 @@ const CourseId = async ({ params }: { params: { courseId: string } }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14">
             <div>
                 <div className="flex items-center gap-x-2">
+                    <IconBagde icon={LayoutDashboard} variant={"success"}/>
                     <h1 className="text-xl">Customize your course</h1>
                 </div>
             </div>

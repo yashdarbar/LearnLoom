@@ -1,8 +1,8 @@
-import { Lucide } from "lucide-react"
+import { LucideIcon } from "lucide-react"
 import {cva, type VariantProps} from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-const backgroundInco = cn(
+const backgroundIcon = cva(
     "rounded-full flex items-center justify-center",
     {
         variants: {
@@ -38,3 +38,23 @@ const iconVariants = cva("", {
         size: "default",
     }
 })
+
+
+type BackgroundIncoProps = VariantProps<typeof backgroundIcon>
+type IconVariantsProps = VariantProps<typeof iconVariants>
+
+interface IconBagdeProps extends BackgroundIncoProps, IconVariantsProps{
+    icon: LucideIcon;
+};
+
+export const IconBagde = ({
+    icon: Icon,
+    variant,
+    size,
+}: IconBagdeProps) => {
+    return (
+        <div className={cn(backgroundIcon({variant, size}))}>
+            <Icon className={cn(iconVariants({variant, size}))}/>
+        </div>
+    )
+}
