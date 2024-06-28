@@ -44,7 +44,7 @@ const CourseId = async ({ params }: { params: { courseId: string } }) => {
             <div>
                 <div className="flex items-center gap-x-2">
                     <IconBagde icon={LayoutDashboard} />
-                    <h1 className="text-xl">Customize your course</h1>
+                    <h2 className="text-xl">Customize your course</h2>
                 </div>
                 <TitleForm initialData={course} courseId={course.id}/>
             </div>

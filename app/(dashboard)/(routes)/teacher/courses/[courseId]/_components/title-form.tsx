@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 
+
+
 interface TitleFormProps {
     initialData: {
         title: string;
@@ -55,3 +57,39 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 };
 
 export default TitleForm;
+
+
+// import axios from "axios";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import * as z from "zod"
+// import { Form, FormField, FormDescription, FormMessage } from "@/components/ui/form";
+// import { Input } from "@/components/ui/input";
+// import { Button } from "@/components/ui/button";
+// import { useForm } from "react-hook-form";
+
+// interface TitleFromProps {
+//     initialData: {
+//         title: string;
+//     };
+//     courseId: string;
+// }
+
+// const formSchema = z.object({
+//     title: z.string().min(1, {
+//         message: "Title required",
+//     }),
+// })
+
+// const TitleForm = ({initialData, courseId}: TitleFromProps) => {
+
+//     const form = useForm<z.infer<typeof formSchema>>({
+//         resolver: zodResolver(formSchema),
+//         defaultValues: initialData
+//     })
+
+//   return (
+//     <div>TitleForm</div>
+//   )
+// }
+
+// export default TitleForm
