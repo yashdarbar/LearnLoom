@@ -87,4 +87,6 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
     );
 };
 
+//creating the form fields
+
 export default TitleForm;
