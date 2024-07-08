@@ -61,6 +61,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
                         </>
                     )}
                 </Button>
+                <h2>form page</h2>
             </div>
                 {!isEditing && (<p className="text-sm mt-2">{initialData.title}</p>)}
                 {isEditing && (
@@ -91,5 +92,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 //creating the form fields
 
 //m3
+//letsgo
+//letsgo
 
 export default TitleForm;
