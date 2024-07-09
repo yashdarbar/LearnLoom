@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface TitleFormProps {
     initialData: {
@@ -43,6 +44,14 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         console.log(values);
+        try {
+            await axios.patch(`/api/courses/${courseId}`, values);
+            toast.success("course updated successfully");
+            toggleEdit();
+            //router.refresh;
+        } catch (error) {
+            toast.error("Something went wrong!");
+        }
     };
 
     const toggleEdit = () => setIsEditing((current)=>(!current));
@@ -61,7 +70,6 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
                         </>
                     )}
                 </Button>
-                <h2>form page</h2>
             </div>
                 {!isEditing && (<p className="text-sm mt-2">{initialData.title}</p>)}
                 {isEditing && (
@@ -88,11 +96,5 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
     );
 };
 
-//creating the form fields
-//creating the form fields
-
-//m3
-//letsgo
-//letsgo
 
 export default TitleForm;
