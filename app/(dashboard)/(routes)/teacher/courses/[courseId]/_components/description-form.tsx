@@ -56,7 +56,6 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
             toast.success("course updated successfully");
             toggleEdit();
             router.refresh;
-            //eror
         } catch (error) {
             toast.error("Something went wrong!");
         }
