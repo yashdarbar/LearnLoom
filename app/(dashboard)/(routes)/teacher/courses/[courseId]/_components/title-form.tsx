@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface TitleFormProps {
     initialData: {
@@ -42,20 +43,25 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
     const { isSubmitting, isValid } = form.formState;
 
+    const toggleEdit = () => setIsEditing((current) => !current);
+
+    const router = useRouter();
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         console.log(values);
         try {
             await axios.patch(`/api/courses/${courseId}`, values);
+            //console.log("bruh",values);
             toast.success("course updated successfully");
             toggleEdit();
-            //router.refresh;
+            router.refresh;
             //eror
         } catch (error) {
             toast.error("Something went wrong!");
         }
     };
 
-    const toggleEdit = () => setIsEditing((current)=>(!current));
+
 
     return (
         <div className="mt-6 border bg-slate-100 rounded-md p-4">
