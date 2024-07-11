@@ -22,7 +22,7 @@ import Link from "next/link";
 
 const formSchema = z.object({
     title: z.string().min(2, {
-        message: "Username must be at least 2 <characters></characters>",
+        message: "Username must be at least 2 character",
     }),
 });
 
