@@ -52,7 +52,6 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
         console.log(values);
         try {
             await axios.patch(`/api/courses/${courseId}`, values);
-            //console.log("bruh",values);
             toast.success("course updated successfully");
             toggleEdit();
             router.refresh;
@@ -100,7 +99,7 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
                                     <FormControl>
                                         <Textarea
                                             disabled={isSubmitting}
-                                            placeholder="This is about the course..."
+                                            placeholder="e.g. 'This is about the course...'"
                                             {...field}
                                         />
                                     </FormControl>
