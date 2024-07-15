@@ -10,7 +10,7 @@ const handleAuth = () => {
     return { userId };
 }
 export const ourFileRouter = {
-    coureImage: f({image: {maxFileSize: "4MB", maxFileCount: 1}}).middleware(()=> handleAuth()).onUploadComplete(()=> {}),
+    courseImage: f({image: {maxFileSize: "4MB", maxFileCount: 1}}).middleware(()=> handleAuth()).onUploadComplete(()=> {}),
     courseAttachment: f(["text", "video", "audio", "image", "pdf"]).middleware(()=> handleAuth()).onUploadComplete(()=>{}),
     chapterVideo: f({video: {maxFileSize: "512GB", maxFileCount: 1}}).middleware(()=> handleAuth()).onUploadComplete(()=>{})
 } satisfies FileRouter;
