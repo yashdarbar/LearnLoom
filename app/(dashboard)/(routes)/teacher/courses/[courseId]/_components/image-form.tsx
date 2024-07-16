@@ -34,8 +34,6 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 
     const [isEditing, setIsEditing] = useState(false);
 
-    const { isSubmitting, isValid } = form.formState;
-
     const toggleEdit = () => setIsEditing((current) => !current);
 
     const router = useRouter();
