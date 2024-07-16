@@ -77,7 +77,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
                     </div>
                 ) : (
                     <div className="relative aspect-video mt-2">
-                        <Image src={initialData.imageUrl} alt="Upload" className="object-cover rounded-md"/>
+                        <Image src={initialData.imageUrl} fill={true} alt="Upload" className="object-cover rounded-md"/>
                     </div>
                 ))}
             {isEditing && <div>
