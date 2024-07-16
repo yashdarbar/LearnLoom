@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { Course } from "@prisma/client";
 import Image from "next/image";
 import { FileUpload } from "@/components/file-upload";
@@ -27,10 +26,6 @@ const formSchema = z.object({
 });
 
 const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: { imageUrl: initialData?.imageUrl || "" },
-    });
 
     const [isEditing, setIsEditing] = useState(false);
 
