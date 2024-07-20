@@ -22,7 +22,7 @@ import {
 interface ComboboxProps {
     options: { label: string; value: string }[];
     value?: string;
-    onChange: (value: string) => void;
+    onChange:(value: string) => void;
 }
 
 export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
@@ -45,7 +45,7 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-[200px] p-0">
-                <Command />
+                <Command >
                 <CommandInput placeholder="Search option..." />
                 <CommandEmpty>No option found.</CommandEmpty>
                 <CommandList>
@@ -76,6 +76,7 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
                         ))}
                     </CommandGroup>
                 </CommandList>
+                </Command >
             </PopoverContent>
         </Popover>
     );
