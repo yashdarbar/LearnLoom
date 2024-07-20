@@ -64,8 +64,6 @@ const CategoryForm = ({ initialData, courseId, options }: CategoryFormProps) => 
 
     const selectedOption = options.find((option)=> option.value === initialData.categoryId);
 
-    console.log("Form initialized:", form);
-    console.log("Form state:", form.formState);
 
     return (
         <div className="mt-6 border bg-slate-100 rounded-md p-4">
