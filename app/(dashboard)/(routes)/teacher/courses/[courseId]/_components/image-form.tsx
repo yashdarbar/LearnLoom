@@ -39,7 +39,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
             await axios.patch(`/api/courses/${courseId}`, values);
             toast.success("course updated successfully");
             toggleEdit();
-            router.refresh;
+            router.refresh();
         } catch (error) {
             toast.error("Something went wrong!");
         }
