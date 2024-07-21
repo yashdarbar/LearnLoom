@@ -1,13 +1,14 @@
 import { IconBagde } from "@/components/icon-bagde";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { DollarSign, LayoutDashboard, ListChecks } from "lucide-react";
+import { DollarSign, File, LayoutDashboard, ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
 import TitleForm from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
 import ImageForm from "./_components/image-form";
 import CategoryForm from "./_components/category-from";
 import PriceForm from "./_components/price-form";
+import AttachmentForm from "./_components/attachment-form";
 
 const CourseId = async ({ params }: { params: { courseId: string } }) => {
 
@@ -20,6 +21,13 @@ const CourseId = async ({ params }: { params: { courseId: string } }) => {
     const course = await db.course.findUnique({
         where: {
             id: params.courseId
+        },
+        include: {
+            attachments: {
+                orderBy: {
+                    createdAt: "desc"
+                }
+            }
         }
     })
 
@@ -80,19 +88,21 @@ const CourseId = async ({ params }: { params: { courseId: string } }) => {
                             <IconBagde icon={ListChecks} />
                             <h2 className="text-xl">Course chapters</h2>
                         </div>
-                        <div>
-                            TODO: Chapters
-                        </div>
+                        <div>TODO: Chapters</div>
                     </div>
                     <div>
                         <div className="flex items-center gap-x-2">
                             <IconBagde icon={DollarSign} />
                             <h2 className="text-xl">Sell your course</h2>
                         </div>
-                        <PriceForm
-                        initialData={course}
-                        courseId={course.id}
-                        />
+                        <PriceForm initialData={course} courseId={course.id} />
+                    </div>
+                    <div>
+                        <div className="flex items-center gap-x-2">
+                            <IconBagde icon={File} />
+                            <h2 className="text-xl">Add files and Attachments</h2>
+                        </div>
+                        <AttachmentForm initialData={course} courseId={course.id}/>
                     </div>
                 </div>
             </div>
