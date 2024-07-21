@@ -20,9 +20,7 @@ interface AttachmentFormProps {
 }
 
 const formSchema = z.object({
-    imageUrl: z.string().min(1, {
-        message: "image is required",
-    }),
+    url: z.string().min(1)
 });
 
 const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
@@ -51,35 +49,38 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
                 Course image
                 <Button variant="ghost" onClick={toggleEdit}>
                     {isEditing && <>Cancel</>}
-                    {!isEditing && !initialData.imageUrl && (
+                    {!isEditing && (
                         <>
                             <PlusCircle className="h-4 w-4 mr-2" />
-                            Add an image
-                        </>
-                    )}
-                    {!isEditing && initialData.imageUrl && (
-                        <>
-                            <Pencil className="h-4 w-4 mr-2 " />
-                            Edit image
+                            Add an file
                         </>
                     )}
                 </Button>
             </div>
-            {!isEditing &&
-                (!initialData.imageUrl ? (
-                    <div className="h-60 flex items-center justify-center bg-slate-200 rounded-md">
-                        <ImageIcon className="h-10 w-10 text-slate-500" />
+            {!isEditing && (
+                <>
+                    {initialData.attachments.length === 0 && (
+                        <p className="text-sm text-slate-500 mt-2 italic">
+                            No attachments yet
+                        </p>
+                    )}
+                </>
+            )}
+            {isEditing && (
+                <div>
+                    <FileUpload
+                        endpoint="courseAttachment"
+                        onChange={(url) => {
+                            if (url) {
+                                onSubmit({ url: url });
+                            }
+                        }}
+                    />
+                    <div className="text-xs text-muted-foreground mt-4">
+                        Add anything your students might need to complete tha course.
                     </div>
-                ) : (
-                    <div className="relative aspect-video mt-2">
-                        <Image src={initialData.imageUrl} fill={true} alt="Upload" className="object-cover rounded-md"/>
-                    </div>
-                ))}
-            {isEditing && <div>
-                <FileUpload
-                endpoint="courseImage"
-                onChange={(url)=> {if (url) {onSubmit({imageUrl: url});}}}
-                /></div>}
+                </div>
+            )}
         </div>
     );
 };
