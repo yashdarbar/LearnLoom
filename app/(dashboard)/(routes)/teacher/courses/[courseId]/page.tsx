@@ -100,7 +100,7 @@ const CourseId = async ({ params }: { params: { courseId: string } }) => {
                     <div>
                         <div className="flex items-center gap-x-2">
                             <IconBagde icon={File} />
-                            <h2 className="text-xl">Add files and Attachments</h2>
+                            <h2 className="text-xl">Resourses & Attachments</h2>
                         </div>
                         <AttachmentForm initialData={course} courseId={course.id}/>
                     </div>
