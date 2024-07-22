@@ -4,7 +4,7 @@ import * as z from "zod";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
+import { File, ImageIcon, Pencil, PlusCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { Attachment, Course } from "@prisma/client";
 import Image from "next/image";
 import { FileUpload } from "@/components/file-upload";
+import { init } from "next/dist/compiled/webpack/webpack";
 
 interface AttachmentFormProps {
     initialData: Course & {attachments: Attachment[]};
@@ -64,7 +65,18 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
                             No attachments yet
                         </p>
                     )}
+                    {initialData.attachments.length > 0 && (
+                        <div className="space-y-2">
+                            {initialData.attachments.map((attachment) => (
+                                <div key={attachment.id} className="flex items-center p-3 w-full bg-sky-100 border-sky-200 text-sky-700 rounded-md">
+                                    <File className="flex-shrink-0 h-4 w-4 mr-2"/>
+                                    <p className="text-xs line-clamp-1">{attachment.name}</p>
+                                </div>
+                            ))}
+                        </div>
+                    ) }
                 </>
+
             )}
             {isEditing && (
                 <div>

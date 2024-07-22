@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
     try {
         const { userId } = auth();
-        console.log("id", userId);
+        //console.log("id", userId);
         const { title } = await req.json();
 
         //console.log(userId);
