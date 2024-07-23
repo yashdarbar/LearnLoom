@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { File, ImageIcon, Loader2, Pencil, PlusCircle, X } from "lucide-react";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -25,7 +25,6 @@ const formSchema = z.object({
 });
 
 const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
-
     const [isEditing, setIsEditing] = useState(false);
 
     const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -46,10 +45,13 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
         }
     };
 
-    const onDelete = async ( id: string ) => {
+    const onDelete = async (id: string) => {
+        //console.log("onDeleteee", id);
         try {
-            setDeletingId(id);
-            await axios.delete(`/api/courses/${courseId}/attacments/${id}`);
+            //setDeletingId(id);
+            //console.log("fa", deletingId);
+            await axios.delete(`/api/courses/${courseId}/attachments/${id}`);
+            //console.log("diidid", id);
             toast.success("Attachment deleted");
             router.refresh();
         } catch {
@@ -97,8 +99,13 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
                                         </div>
                                     )}
                                     {deletingId !== attachment.id && (
-                                        <button onClick={()=>onDelete(attachment.id)} className="ml-auto hover:opacity-75 transition">
-                                            <X className="h-4 w-4"/>
+                                        <button
+                                            onClick={() =>
+                                                onDelete(attachment.id)
+                                            }
+                                            className="ml-auto hover:opacity-75 transition"
+                                        >
+                                            <X className="h-4 w-4" />
                                         </button>
                                     )}
                                 </div>
