@@ -46,12 +46,9 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
     };
 
     const onDelete = async (id: string) => {
-        //console.log("onDeleteee", id);
         try {
-            //setDeletingId(id);
-            //console.log("fa", deletingId);
+            setDeletingId(id); // here we are updating the state so the user experience should be good. i wont make any changes but it just for the loader experience.
             await axios.delete(`/api/courses/${courseId}/attachments/${id}`);
-            //console.log("diidid", id);
             toast.success("Attachment deleted");
             router.refresh();
         } catch {
