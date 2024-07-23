@@ -4,9 +4,9 @@ import * as z from "zod";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { File, ImageIcon, Pencil, PlusCircle } from "lucide-react";
+import { File, ImageIcon, Loader2, Pencil, PlusCircle, X } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -27,6 +27,8 @@ const formSchema = z.object({
 const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
 
     const [isEditing, setIsEditing] = useState(false);
+
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
     const toggleEdit = () => setIsEditing((current) => !current);
 
@@ -68,15 +70,29 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
                     {initialData.attachments.length > 0 && (
                         <div className="space-y-2">
                             {initialData.attachments.map((attachment) => (
-                                <div key={attachment.id} className="flex items-center p-3 w-full bg-sky-100 border-sky-200 text-sky-700 rounded-md">
-                                    <File className="flex-shrink-0 h-4 w-4 mr-2"/>
-                                    <p className="text-xs line-clamp-1">{attachment.name}</p>
+                                <div
+                                    key={attachment.id}
+                                    className="flex items-center p-3 w-full bg-sky-100 border-sky-200 text-sky-700 rounded-md"
+                                >
+                                    <File className="flex-shrink-0 h-4 w-4 mr-2" />
+                                    <p className="text-xs line-clamp-1">
+                                        {attachment.name}
+                                    </p>
+                                    {deletingId === attachment.id && (
+                                        <div className="ml-auto">
+                                            <Loader2 className="h4 w-4 animate-spin" />
+                                        </div>
+                                    )}
+                                    {deletingId !== attachment.id && (
+                                        <button className="ml-auto hover:opacity-75 transition">
+                                            <X className="h-4 w-4"/>
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>
-                    ) }
+                    )}
                 </>
-
             )}
             {isEditing && (
                 <div>
@@ -89,7 +105,8 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
                         }}
                     />
                     <div className="text-xs text-muted-foreground mt-4">
-                        Add anything your students might need to complete tha course.
+                        Add anything your students might need to complete tha
+                        course.
                     </div>
                 </div>
             )}
