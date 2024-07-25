@@ -19,10 +19,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
-import { Course } from "@prisma/client";
+import { Chapter, Course } from "@prisma/client";
+import { Input } from "@/components/ui/input";
 
 interface ChapterFormProps {
-    initialData: Course;
+    initialData: Course & { chapters: Chapter[] };
     courseId: string;
 }
 
@@ -48,7 +49,6 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
     const router = useRouter();
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values);
         try {
             await axios.post(`/api/courses/${courseId}/chapters`, values);
             toast.success("Chapter created");
@@ -74,16 +74,6 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
                     )}
                 </Button>
             </div>
-            {!isCreating && (
-                <p
-                    className={cn(
-                        "text-sm mt-2",
-                        !initialData.description && "text-slate-500 italic"
-                    )}
-                >
-                    {initialData.description || "No description"}
-                </p>
-            )}
             {isCreating && (
                 <Form {...form}>
                     <form
@@ -96,9 +86,9 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Textarea
+                                        <Input
                                             disabled={isSubmitting}
-                                            placeholder="e.g. 'This is about the course...'"
+                                            placeholder="e.g. 'Introduction to the course ...'"
                                             {...field}
                                         />
                                     </FormControl>
@@ -106,16 +96,22 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
                                 </FormItem>
                             )}
                         />
-                        <div className="flex items-center gap-x-2">
                             <Button
                                 disabled={!isValid || isSubmitting}
                                 type="submit"
                             >
-                                Save
+                                Create
                             </Button>
-                        </div>
                     </form>
                 </Form>
+            )}
+            {!isCreating && (
+                <div className={cn("text-sm mt-2", !initialData.chapters.length && "text-slate-500 italic")}>
+                    {!initialData.chapters.length && "No chapters"}
+                </div>
+            )}
+            {!isCreating && (
+                <p className="text-xs text-muted-foreground mt-4">Drag and drop to reorder the chapters</p>
             )}
         </div>
     );
