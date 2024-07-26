@@ -10,7 +10,7 @@ import {
     Draggable,
     DropResult,
 } from "@hello-pangea/dnd";
-import { Grip } from "lucide-react";
+import { Grip, Pencil } from "lucide-react";
 
 interface ChaptersListProps {
     onEdit: (id: string) => void;
@@ -70,11 +70,22 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
                                                 <Grip className="h-4 w-4" />
                                             </div>
                                             {chapter.title}
-                                            <div></div>
+                                            <div className="ml-auto flex pr-2 items-center gap-x">
+                                                {chapter.isFree && (
+                                                    <Badge>Free</Badge>
+                                                )}
+                                                <Badge className={cn("bg-slate-500", chapter.isPublished && "bg-sky-500")}>
+                                                    {chapter.isPublished
+                                                        ? "Published"
+                                                        : "Draft"}
+                                                </Badge>
+                                                <Pencil onClick={()=> onEdit(chapter.id)} className="ml-2 h-4 w-4 cursor-pointer hover:opacity-75 transition"/>
+                                            </div>
                                         </div>
                                     )}
                                 </Draggable>
                             ))}
+                            {provided.placeholder}
                         </div>
                     )}
                 </Droppable>
