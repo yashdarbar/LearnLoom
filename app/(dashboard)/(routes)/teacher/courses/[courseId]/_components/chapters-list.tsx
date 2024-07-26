@@ -10,6 +10,7 @@ import {
     Draggable,
     DropResult,
 } from "@hello-pangea/dnd";
+import { Grip } from "lucide-react";
 
 interface ChaptersListProps {
     onEdit: (id: string) => void;
@@ -33,27 +34,56 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
         return null;
     }
 
-    return <div>
-        <DragDropContext onDragEnd={()=>{}}>
-            <Droppable droppableId="chapters">
-                {(provided)=>(
-                    <div {...provided.droppableProps} ref={provided.innerRef}>
-                        {chapters.map((chapter, index)=>(
-                            <Draggable key={chapter.id} index={index} draggableId={chapter.id}>
-                                {(provided)=>(
-                                    <div className={cn("flex items-center gap-x-2 mb-4 rounded-md bg-slate-200 border-slate-200 text-sm text-slate-700", chapter.isPublished && "text-sky-700 bg-sky-700")} {...provided.draggableProps} ref={provided.innerRef}>
-                                        
-                                    </div>
-                                )}
-                            </Draggable>
-                        ))}
-                    </div>
-                )}
-            </Droppable>
-        </DragDropContext>
-        </div>;
+    return (
+        <div>
+            <DragDropContext onDragEnd={() => {}}>
+                <Droppable droppableId="chapters">
+                    {(provided) => (
+                        <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                        >
+                            {chapters.map((chapter, index) => (
+                                <Draggable
+                                    key={chapter.id}
+                                    index={index}
+                                    draggableId={chapter.id}
+                                >
+                                    {(provided) => (
+                                        <div
+                                            className={cn(
+                                                "flex items-center gap-x-2 mb-4 rounded-md bg-slate-200 border-slate-200 text-sm text-slate-700",
+                                                chapter.isPublished &&
+                                                    "text-sky-700 bg-sky-700"
+                                            )}
+                                            {...provided.draggableProps}
+                                            ref={provided.innerRef}
+                                        >
+                                            <div
+                                                className={cn(
+                                                    "px-2 py-3 border-r border-r-slate-200 hover:bg-slate-300 rounded-l-md transition",
+                                                    chapter.isPublished &&
+                                                        "border-r-sky-200 hover:bg-sky-200"
+                                                )}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                <Grip className="h-4 w-4" />
+                                            </div>
+                                            {chapter.title}
+                                            <div></div>
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
+        </div>
+    );
 };
-{/* <DragDropContext onDragEnd={()=>{}}>
+{
+    /* <DragDropContext onDragEnd={()=>{}}>
             <Droppable droppableId="chapters">
                 {(provided)=>(
                     <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -74,7 +104,7 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
                     </div>
                 )}
             </Droppable>
-        </DragDropContext> */}
-
+        </DragDropContext> */
+}
 
 export default ChaptersList;
