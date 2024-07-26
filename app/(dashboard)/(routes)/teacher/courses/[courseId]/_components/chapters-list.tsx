@@ -2,41 +2,79 @@
 
 import { Chapter } from "@prisma/client";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import {
     DragDropContext,
     Droppable,
     Draggable,
-    DropResult
-} from "@hello-pangea/dnd"
-
+    DropResult,
+} from "@hello-pangea/dnd";
 
 interface ChaptersListProps {
-    onEdit:(id: string) => void;
-    onReorder: (updateData: {id: string; position: number }[]) => void;
+    onEdit: (id: string) => void;
+    onReorder: (updateData: { id: string; position: number }[]) => void;
     items: Chapter[];
 }
 
-
-const ChaptersList = ({onEdit, onReorder, items}: ChaptersListProps) => {
-
+const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
     const [isMounted, setIsMounted] = useState(false);
     const [chapters, setChapters] = useState(items);
 
-    useEffect(()=>{
+    useEffect(() => {
         setIsMounted(true);
-    }, [])
+    }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         setChapters(items);
-    }, [items])
+    }, [items]);
 
     if (!isMounted) {
         return null;
     }
 
-    return <div>ChaptersList</div>;
+    return <div>
+        <DragDropContext onDragEnd={()=>{}}>
+            <Droppable droppableId="chapters">
+                {(provided)=>(
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                        {chapters.map((chapter, index)=>(
+                            <Draggable key={chapter.id} index={index} draggableId={chapter.id}>
+                                {(provided)=>(
+                                    <div className={cn("flex items-center gap-x-2 mb-4 rounded-md bg-slate-200 border-slate-200 text-sm text-slate-700", chapter.isPublished && "text-sky-700 bg-sky-700")} {...provided.draggableProps} ref={provided.innerRef}>
+                                        
+                                    </div>
+                                )}
+                            </Draggable>
+                        ))}
+                    </div>
+                )}
+            </Droppable>
+        </DragDropContext>
+        </div>;
 };
+{/* <DragDropContext onDragEnd={()=>{}}>
+            <Droppable droppableId="chapters">
+                {(provided)=>(
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                        {chapters.map((chapter, index)=>(
+                            <Draggable
+                            key={chapter.id}
+                            index={index}
+                            draggableId={chapter.id}
+                            >
+                                {(provided)=>(
+                                    <div className={cn("flex items-center gap-x-2 bg-slate-200 border-slate-200 rounded-md text-slate-700 mb-4 text-sm", chapter.isPublished && " bg-sky-200 text-sky-700")} ref={provided.innerRef}
+                                    {...provided.draggableProps}>
+
+                                    </div>
+                                )}
+                            </Draggable>
+                        ))}
+                    </div>
+                )}
+            </Droppable>
+        </DragDropContext> */}
+
 
 export default ChaptersList;
