@@ -18,9 +18,9 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 import { Chapter, Course } from "@prisma/client";
 import { Input } from "@/components/ui/input";
+import ChaptersList from "./chapters-list";
 
 interface ChapterFormProps {
     initialData: Course & { chapters: Chapter[] };
@@ -59,6 +59,8 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
         }
     };
 
+    //console.log(isCreating);
+
     return (
         <div className="mt-6 border bg-slate-100 rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
@@ -96,22 +98,34 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
                                 </FormItem>
                             )}
                         />
-                            <Button
-                                disabled={!isValid || isSubmitting}
-                                type="submit"
-                            >
-                                Create
-                            </Button>
+                        <Button
+                            disabled={!isValid || isSubmitting}
+                            type="submit"
+                        >
+                            Create
+                        </Button>
                     </form>
                 </Form>
             )}
             {!isCreating && (
-                <div className={cn("text-sm mt-2", !initialData.chapters.length && "text-slate-500 italic")}>
+                <div
+                    className={cn(
+                        "text-sm mt-2",
+                        !initialData.chapters.length && "text-slate-500 italic"
+                    )}
+                >
                     {!initialData.chapters.length && "No chapters"}
+                    <ChaptersList
+                        onEdit={() => {}}
+                        onReorder={() => {}}
+                        items={initialData.chapters || []}
+                    />
                 </div>
             )}
             {!isCreating && (
-                <p className="text-xs text-muted-foreground mt-4">Drag and drop to reorder the chapters</p>
+                <p className="text-xs text-muted-foreground mt-4">
+                    Drag and drop to reorder the chapters
+                </p>
             )}
         </div>
     );
