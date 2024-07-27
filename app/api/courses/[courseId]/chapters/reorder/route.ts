@@ -34,7 +34,7 @@ export async function PUT(
             });
         }
 
-        return NextResponse.json(list);
+        return new NextResponse("Success", { status: 200});
 
     } catch (error) {
         console.log("[CHAPTER_REORDER]", error);

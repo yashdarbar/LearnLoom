@@ -4,7 +4,7 @@ import * as z from "zod";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Pencil, PlusCircle } from "lucide-react";
+import { Loader2, PlusCircle } from "lucide-react";
 
 import {
     Form,
@@ -40,7 +40,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
     });
 
     const [isCreating, setIsCreating] = useState(false);
-    const [isUpdating, setIsUpdating] = useState(true);
+    const [isUpdating, setIsUpdating] = useState(false);
 
     const { isSubmitting, isValid } = form.formState;
 
@@ -77,7 +77,12 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
     //console.log(isCreating);
 
     return (
-        <div className="mt-6 border bg-slate-100 rounded-md p-4">
+        <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
+            {isUpdating && (
+                <div className="absolute w-full h-full top-0 right-0 opacity-40 bg-slate-200 rounded-md flex justify-center items-center">
+                    <Loader2 className="animate-spin h-6 w-6 text-sky-700"/>
+                </div>
+            )}
             <div className="font-medium flex items-center justify-between">
                 Course chapters
                 <Button variant="ghost" onClick={toggleCreating}>
