@@ -80,7 +80,8 @@ const ChapterId = async ({
                         </div>
                         <ChapterTitleForm
                             initialData={chapter}
-                            chapterId={chapter.id}
+                            chapterId={params.chapterId}
+                            courseId={params.courseId}
                         />
                     </div>
                 </div>
