@@ -52,7 +52,7 @@ const ChapterId = async ({
                 <div className="w-full">
                     <Link
                         href={`/teacher/courses/${params.courseId}`}
-                        className="flex items-center text-xl hover:opacity-75 transition mb-6"
+                        className="flex items-center text-base hover:opacity-75 transition mb-6"
                     >
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Back to the course
@@ -97,7 +97,7 @@ const ChapterId = async ({
                         chapterId={params.chapterId}
                         courseId={params.courseId}
                         />
-                        
+
                     </div>
                 </div>
             </div>
