@@ -2,19 +2,15 @@ import { IconBagde } from "@/components/icon-bagde";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import {
-    ArrowBigLeft,
-    ArrowBigLeftDash,
-    ArrowBigLeftDashIcon,
     ArrowLeft,
     LayoutDashboard,
-    LucideArrowBigLeft,
 } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import React from "react";
 import { ChapterTitleForm } from "./_components/chapter-title-form";
-import CourseId from "../../page";
 import Link from "next/link";
+import ChapterDescriptionForm from "./_components/chapter-description-form";
 
 const ChapterId = async ({
     params,
@@ -79,6 +75,11 @@ const ChapterId = async ({
                             <h2 className="text-xl">Customize your chapter</h2>
                         </div>
                         <ChapterTitleForm
+                            initialData={chapter}
+                            chapterId={params.chapterId}
+                            courseId={params.courseId}
+                        />
+                        <ChapterDescriptionForm
                             initialData={chapter}
                             chapterId={params.chapterId}
                             courseId={params.courseId}
