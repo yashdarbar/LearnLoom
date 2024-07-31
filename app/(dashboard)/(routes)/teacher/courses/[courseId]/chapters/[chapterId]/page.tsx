@@ -5,6 +5,7 @@ import {
     ArrowLeft,
     Eye,
     LayoutDashboard,
+    Video,
 } from "lucide-react";
 import { redirect } from "next/navigation";
 
@@ -89,15 +90,22 @@ const ChapterId = async ({
                     </div>
                     <div>
                         <div className="flex items-center gap-x-2">
-                            <IconBagde icon={Eye}/>
+                            <IconBagde icon={Eye} />
                             <h2 className="text-xl">Access Settings</h2>
                         </div>
                         <ChapterAccessForm
-                        initialData={chapter}
-                        chapterId={params.chapterId}
-                        courseId={params.courseId}
+                            initialData={chapter}
+                            chapterId={params.chapterId}
+                            courseId={params.courseId}
                         />
-
+                    </div>
+                </div>
+                <div className="space-y-4">
+                    <div>
+                        <div className="flex items-center gap-x-2">
+                            <IconBagde icon={Video} />
+                            <h2 className="text-xl">Add a video</h2>
+                        </div>
                     </div>
                 </div>
             </div>

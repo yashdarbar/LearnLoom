@@ -115,29 +115,6 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
         </div>
     );
 };
-{
-    /* <DragDropContext onDragEnd={()=>{}}>
-            <Droppable droppableId="chapters">
-                {(provided)=>(
-                    <div {...provided.droppableProps} ref={provided.innerRef}>
-                        {chapters.map((chapter, index)=>(
-                            <Draggable
-                            key={chapter.id}
-                            index={index}
-                            draggableId={chapter.id}
-                            >
-                                {(provided)=>(
-                                    <div className={cn("flex items-center gap-x-2 bg-slate-200 border-slate-200 rounded-md text-slate-700 mb-4 text-sm", chapter.isPublished && " bg-sky-200 text-sky-700")} ref={provided.innerRef}
-                                    {...provided.draggableProps}>
 
-                                    </div>
-                                )}
-                            </Draggable>
-                        ))}
-                    </div>
-                )}
-            </Droppable>
-        </DragDropContext> */
-}
 
 export default ChaptersList;
