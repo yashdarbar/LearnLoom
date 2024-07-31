@@ -14,6 +14,7 @@ import { ChapterTitleForm } from "./_components/chapter-title-form";
 import Link from "next/link";
 import ChapterDescriptionForm from "./_components/chapter-description-form";
 import ChapterAccessForm from "./_components/chapter-access-form";
+import ChapterVideoForm from "./_components/video-form";
 
 const ChapterId = async ({
     params,
@@ -107,6 +108,9 @@ const ChapterId = async ({
                             <h2 className="text-xl">Add a video</h2>
                         </div>
                     </div>
+                    <ChapterVideoForm initialData={chapter}
+                    chapterId={params.chapterId}
+                    courseId={params.courseId}/>
                 </div>
             </div>
         </div>
