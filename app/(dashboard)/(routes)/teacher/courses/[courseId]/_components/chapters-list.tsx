@@ -76,7 +76,7 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
                                             className={cn(
                                                 "flex items-center gap-x-2 mb-4 rounded-md bg-slate-200 border-slate-200 text-sm text-slate-700 dark:bg-black dark:border dark:border-slate-600",
                                                 chapter.isPublished &&
-                                                    "text-sky-700 bg-sky-700"
+                                                    "text-sky-700 bg-sky-100"
                                             )}
                                             {...provided.draggableProps}
                                             ref={provided.innerRef}
