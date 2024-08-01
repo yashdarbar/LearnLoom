@@ -5,6 +5,7 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Pencil, PlusCircle, Video } from "lucide-react";
+import  MuxPlayer  from "@mux/mux-player-react"
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -70,7 +71,9 @@ const ChapterVideoForm = ({ initialData, courseId, chapterId }: ChapterVideoForm
                     </div>
                 ) : (
                     <div className="relative aspect-video mt-2">
-                        Video uploaded!
+                        <MuxPlayer
+                        playbackId={initialData?.muxData?.playbackId || ""}
+                        />
                     </div>
                 ))}
             {isEditing && (
