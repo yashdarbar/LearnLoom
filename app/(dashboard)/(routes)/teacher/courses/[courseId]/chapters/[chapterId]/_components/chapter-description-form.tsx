@@ -84,8 +84,12 @@ const ChapterDescriptionForm = ({ initialData, courseId, chapterId }: ChapterDes
                 >
                     {!initialData.description && "No description"}
                     {initialData.description && (
-                        <Preview
-                        value={initialData.description}/>
+                        <>
+                            <Preview
+                                value={initialData.description}
+                            />
+
+                        </>
                     )}
                 </div>
             )}
