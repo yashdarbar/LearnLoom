@@ -62,7 +62,7 @@ export const ChapterTitleForm = ({
     }
 
     return (
-        <div className="mt-6 bg-slate-100 border rounded-md p-4">
+        <div className="mt-6 bg-slate-100 border rounded-md p-4 dark:bg-black">
             <div className="font-medium flex items-center justify-between">
                 Chapter title
                 <Button variant="ghost" onClick={toggleEdit}>

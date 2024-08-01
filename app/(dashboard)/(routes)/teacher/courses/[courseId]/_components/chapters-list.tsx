@@ -74,7 +74,7 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
                                     {(provided) => (
                                         <div
                                             className={cn(
-                                                "flex items-center gap-x-2 mb-4 rounded-md bg-slate-200 border-slate-200 text-sm text-slate-700",
+                                                "flex items-center gap-x-2 mb-4 rounded-md bg-slate-200 border-slate-200 text-sm text-slate-700 dark:bg-black dark:border dark:border-slate-600",
                                                 chapter.isPublished &&
                                                     "text-sky-700 bg-sky-700"
                                             )}
@@ -83,7 +83,7 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
                                         >
                                             <div
                                                 className={cn(
-                                                    "px-2 py-3 border-r border-r-slate-200 hover:bg-slate-300 rounded-l-md transition",
+                                                    "px-2 py-3 border-r border-r-slate-200 hover:bg-slate-300 rounded-l-md transition dark:border-r-slate-600 dark:border-r",
                                                     chapter.isPublished &&
                                                         "border-r-sky-200 hover:bg-sky-200"
                                                 )}
@@ -91,17 +91,30 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
                                             >
                                                 <Grip className="h-4 w-4" />
                                             </div>
-                                            {chapter.title}
-                                            <div className="ml-auto flex pr-2 items-center gap-x">
+                                            <div className="dark:text-white">
+                                                {chapter.title}
+                                            </div>
+                                            <div className="ml-auto flex pr-2 items-center gap-x dark:bg-black">
                                                 {chapter.isFree && (
                                                     <Badge>Free</Badge>
                                                 )}
-                                                <Badge className={cn("bg-slate-500", chapter.isPublished && "bg-sky-500")}>
+                                                <Badge
+                                                    className={cn(
+                                                        "bg-slate-500",
+                                                        chapter.isPublished &&
+                                                            "bg-sky-500 dark:bg-slate-600"
+                                                    )}
+                                                >
                                                     {chapter.isPublished
                                                         ? "Published"
                                                         : "Draft"}
                                                 </Badge>
-                                                <Pencil onClick={()=> onEdit(chapter.id)} className="ml-2 h-4 w-4 cursor-pointer hover:opacity-75 transition"/>
+                                                <Pencil
+                                                    onClick={() =>
+                                                        onEdit(chapter.id)
+                                                    }
+                                                    className="ml-2 h-4 w-4 cursor-pointer hover:opacity-75 transition dark:text-white"
+                                                />
                                             </div>
                                         </div>
                                     )}

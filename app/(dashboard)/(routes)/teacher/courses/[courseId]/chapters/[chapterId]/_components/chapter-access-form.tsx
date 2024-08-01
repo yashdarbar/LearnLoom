@@ -63,7 +63,7 @@ const ChapterAccessForm = ({ initialData, courseId, chapterId }: ChapterAccessFo
     };
 
     return (
-        <div className="mt-6 border bg-slate-100 rounded-md p-4">
+        <div className="mt-6 border bg-slate-100 rounded-md p-4 dark:bg-black">
             <div className="font-medium flex items-center justify-between">
                 Chapter access
                 <Button variant="ghost" onClick={toggleEdit}>

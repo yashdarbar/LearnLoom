@@ -46,7 +46,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
     };
 
     return (
-        <div className="mt-6 border bg-slate-100 rounded-md p-4">
+        <div className="mt-6 border bg-slate-100 rounded-md p-4 dark:bg-black">
             <div className="font-medium flex items-center justify-between">
                 Course image
                 <Button variant="ghost" onClick={toggleEdit}>
@@ -67,7 +67,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
             </div>
             {!isEditing &&
                 (!initialData.imageUrl ? (
-                    <div className="h-60 flex items-center justify-center bg-slate-200 rounded-md">
+                    <div className="h-60 flex items-center justify-center bg-slate-200 rounded-md dark:bg-gray-950">
                         <ImageIcon className="h-10 w-10 text-slate-500" />
                     </div>
                 ) : (

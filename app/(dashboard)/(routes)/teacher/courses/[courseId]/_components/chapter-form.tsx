@@ -81,7 +81,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
     //console.log(isCreating);
 
     return (
-        <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
+        <div className="relative mt-6 border bg-slate-100 rounded-md p-4 dark:bg-black">
             {isUpdating && (
                 <div className="absolute w-full h-full top-0 right-0 opacity-40 bg-slate-200 rounded-md flex justify-center items-center">
                     <Loader2 className="animate-spin h-6 w-6 text-sky-700"/>
@@ -116,6 +116,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
                                             disabled={isSubmitting}
                                             placeholder="e.g. 'Introduction to the course ...'"
                                             {...field}
+                                            className="dark:bg-black"
                                         />
                                     </FormControl>
                                     <FormMessage />

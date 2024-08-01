@@ -7,6 +7,8 @@ import {
 } from "@clerk/nextjs";
 import "./globals.css";
 import ToasterProvider from "@/components/providers/toaster-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+
 export default function RootLayout({
     children,
 }: {
@@ -24,8 +26,15 @@ export default function RootLayout({
                             <UserButton />
                         </SignedIn>
                     </div>
-                    <ToasterProvider />
-                    {children}
+                    <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                    >
+                        <ToasterProvider />
+                        {children}
+                    </ThemeProvider>
                 </body>
             </html>
         </ClerkProvider>
