@@ -15,6 +15,7 @@ import Link from "next/link";
 import ChapterDescriptionForm from "./_components/chapter-description-form";
 import ChapterAccessForm from "./_components/chapter-access-form";
 import ChapterVideoForm from "./_components/video-form";
+import Banner from "@/components/banner";
 
 const ChapterId = async ({
     params,
@@ -49,71 +50,80 @@ const ChapterId = async ({
     const completionText = `${completedFields}/${totalFields}`;
 
     return (
-        <div className="p-6">
-            <div className="flex justify-between items-center">
-                <div className="w-full">
-                    <Link
-                        href={`/teacher/courses/${params.courseId}`}
-                        className="flex items-center text-base hover:opacity-75 transition mb-6"
-                    >
-                        <ArrowLeft className="h-4 w-4 mr-2" />
-                        Back to the course
-                    </Link>
-                    <div className="flex items-center justify-between w-full">
-                        <div className="flex flex-col gap-y-2">
-                            <h1 className="text-2xl font-medium">
-                                Chapter setup
-                            </h1>
-                            <span className="text-sm text-slate-700 dark:text-slate-300">
-                                Complete all fields: {completionText}
-                            </span>
+        <>
+        {!chapter.isPublished &&
+            <Banner variant="warning" label="This chapter is unpublished. It will not be visible in the course"/>
+        }
+            <div className="p-6">
+                <div className="flex justify-between items-center">
+                    <div className="w-full">
+                        <Link
+                            href={`/teacher/courses/${params.courseId}`}
+                            className="flex items-center text-base hover:opacity-75 transition mb-6"
+                        >
+                            <ArrowLeft className="h-4 w-4 mr-2" />
+                            Back to the course
+                        </Link>
+                        <div className="flex items-center justify-between w-full">
+                            <div className="flex flex-col gap-y-2">
+                                <h1 className="text-2xl font-medium">
+                                    Chapter setup
+                                </h1>
+                                <span className="text-sm text-slate-700 dark:text-slate-300">
+                                    Complete all fields: {completionText}
+                                </span>
+                            </div>
                         </div>
+                    </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 mt-14 gap-6">
+                    <div className="space-y-4">
+                        <div>
+                            <div className="flex items-center gap-x-2">
+                                <IconBagde icon={LayoutDashboard} />
+                                <h2 className="text-xl">
+                                    Customize your chapter
+                                </h2>
+                            </div>
+                            <ChapterTitleForm
+                                initialData={chapter}
+                                chapterId={params.chapterId}
+                                courseId={params.courseId}
+                            />
+                            <ChapterDescriptionForm
+                                initialData={chapter}
+                                chapterId={params.chapterId}
+                                courseId={params.courseId}
+                            />
+                        </div>
+                        <div>
+                            <div className="flex items-center gap-x-2">
+                                <IconBagde icon={Eye} />
+                                <h2 className="text-xl">Access Settings</h2>
+                            </div>
+                            <ChapterAccessForm
+                                initialData={chapter}
+                                chapterId={params.chapterId}
+                                courseId={params.courseId}
+                            />
+                        </div>
+                    </div>
+                    <div className="space-y-4">
+                        <div>
+                            <div className="flex items-center gap-x-2">
+                                <IconBagde icon={Video} />
+                                <h2 className="text-xl">Add a video</h2>
+                            </div>
+                        </div>
+                        <ChapterVideoForm
+                            initialData={chapter}
+                            chapterId={params.chapterId}
+                            courseId={params.courseId}
+                        />
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 mt-14 gap-6">
-                <div className="space-y-4">
-                    <div>
-                        <div className="flex items-center gap-x-2">
-                            <IconBagde icon={LayoutDashboard} />
-                            <h2 className="text-xl">Customize your chapter</h2>
-                        </div>
-                        <ChapterTitleForm
-                            initialData={chapter}
-                            chapterId={params.chapterId}
-                            courseId={params.courseId}
-                        />
-                        <ChapterDescriptionForm
-                            initialData={chapter}
-                            chapterId={params.chapterId}
-                            courseId={params.courseId}
-                        />
-                    </div>
-                    <div>
-                        <div className="flex items-center gap-x-2">
-                            <IconBagde icon={Eye} />
-                            <h2 className="text-xl">Access Settings</h2>
-                        </div>
-                        <ChapterAccessForm
-                            initialData={chapter}
-                            chapterId={params.chapterId}
-                            courseId={params.courseId}
-                        />
-                    </div>
-                </div>
-                <div className="space-y-4">
-                    <div>
-                        <div className="flex items-center gap-x-2">
-                            <IconBagde icon={Video} />
-                            <h2 className="text-xl">Add a video</h2>
-                        </div>
-                    </div>
-                    <ChapterVideoForm initialData={chapter}
-                    chapterId={params.chapterId}
-                    courseId={params.courseId}/>
-                </div>
-            </div>
-        </div>
+        </>
     );
 };
 
