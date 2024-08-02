@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 import ToasterProvider from "@/components/providers/toaster-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ConfettiProvider } from "@/components/providers/confetti-provider";
 
 export default function RootLayout({
     children,
@@ -32,6 +33,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                     >
+                        <ConfettiProvider/>
                         <ToasterProvider />
                         {children}
                     </ThemeProvider>
