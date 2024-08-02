@@ -25,7 +25,7 @@ export async function PATCH (
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
-        const chpater = await db.chapter.findUnique({
+        const chapter = await db.chapter.findUnique({
             where: {
                 id: params.chapterId,
                 courseId: params.courseId
@@ -38,7 +38,7 @@ export async function PATCH (
             }
         });
 
-        if (!chpater || !muxData || !chpater.title || !chpater.description || !chpater.videoUrl) {
+        if (!chapter || !muxData || !chapter.title || !chapter.description || !chapter.videoUrl) {
             return new NextResponse("Missing the required fields", { status: 404})
         }
 
