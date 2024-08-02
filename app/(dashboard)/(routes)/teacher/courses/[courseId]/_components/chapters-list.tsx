@@ -96,7 +96,7 @@ const ChaptersList = ({ onEdit, onReorder, items }: ChaptersListProps) => {
                                             </div>
                                             <div className="ml-auto flex pr-2 items-center gap-x dark:bg-black">
                                                 {chapter.isFree && (
-                                                    <Badge>Free</Badge>
+                                                    <Badge className="mr-2">Free</Badge>
                                                 )}
                                                 <Badge
                                                     className={cn(
