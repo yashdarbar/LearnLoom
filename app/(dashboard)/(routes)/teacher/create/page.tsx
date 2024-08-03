@@ -54,9 +54,10 @@ const CreatePage = () => {
     }
 
     return (
-        <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6 dark:bg-black">
+        <div className="max-w-5xl mx-auto mt-10 flex md:items-center md:justify-center h-full p-6 dark:bg-black">
             <div className="">
                 <h1 className="text-2xl font-semibold">Name of the course</h1>
+                <p className="text-sm text-slate-500">What would you like to name your course? Don't worry, you can change this later.</p>
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
@@ -67,7 +68,7 @@ const CreatePage = () => {
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>title</FormLabel>
+                                    <FormLabel>Course title</FormLabel>
                                     <FormControl>
                                         <Input
                                             disabled={isSubmitting}
