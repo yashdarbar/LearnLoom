@@ -10,7 +10,6 @@ import CategoryForm from "./_components/category-form";
 import PriceForm from "./_components/price-form";
 import AttachmentForm from "./_components/attachment-form";
 import ChapterForm from "./_components/chapter-form";
-import { channel } from "diagnostics_channel";
 import CourseActions from "./_components/course-actions";
 import Banner from "@/components/banner";
 
