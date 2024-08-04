@@ -1,3 +1,4 @@
+
 import { db } from '@/lib/db'
 import Categories from './_components/categories'
 
@@ -7,9 +8,6 @@ import Categories from './_components/categories'
 const SearchPage = async () => {
 
   const categories = await db.category.findMany({
-    where: {
-      name: ""
-    },
     orderBy: {
       name: "asc"
     }
