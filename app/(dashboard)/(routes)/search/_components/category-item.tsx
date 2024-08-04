@@ -40,7 +40,8 @@ const CategoryItem = ({ label, value, icon: Icon }: CategoryItemProps) => {
 
     return (
         <div>
-            <button onClick={onClick}
+            <button
+                onClick={onClick}
                 className={cn(
                     "flex items-center border px-3 text-sm hover:border-sky-600 transition py-2 rounded-full gap-x-1",
                     isSelected && "bg-sky-200/20 border-sky-600 text-sky-600"
