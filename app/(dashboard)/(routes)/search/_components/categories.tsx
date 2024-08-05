@@ -9,7 +9,6 @@ import {
     FcSportsMode,
     FcSalesPerformance,
     FcMusic,
-    FcServices,
     FcMultipleDevices,
     FcGallery,
 } from "react-icons/fc";
