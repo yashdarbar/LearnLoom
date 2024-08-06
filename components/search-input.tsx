@@ -19,7 +19,7 @@ const SearchInput = () => {
     const currentCategoryId = searchParams.get("categoryId");
 
     useEffect(() => {
-        const url = qs.stringify(
+        const url = qs.stringifyUrl(
             {
                 url: pathName,
                 query: {
@@ -30,7 +30,7 @@ const SearchInput = () => {
             { skipEmptyString: true, skipNull: true }
         );
 
-        //router.push(url);
+        router.push(url);
     }, [debounceValue, router, pathName, currentCategoryId]);
 
     return (

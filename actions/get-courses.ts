@@ -3,7 +3,7 @@ import { db } from "@/lib/db"
 import { getProgress } from "@/actions/get-progress"
 
 type CourseWithProgressWithCategory = Course & {
-    //catagory: null | Category;
+    //catagory: Category | null;
     chapters: { id: string }[];
     progress: number | null;
 };
@@ -49,7 +49,7 @@ export const getCourses = async ({userId, title, categoryId}: GetCourses): Promi
             if(course.purchases.length === 0) {
                 return {
                     ...course,
-                    progress: null
+                    progress: null,
                 }
             }
 
