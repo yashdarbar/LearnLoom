@@ -17,17 +17,16 @@ export const getProgress = async (
 
         const publishedChaptersIds = publishedChapters.map((chapter)=>(chapter.id));
 
-        const validChapters = await db.userProgress.count({
+        const validCompleteChapters = await db.userProgress.count({
             where: {
                 userId: userId,
+                isCompleted: true,
                 chapterId: {
-                    in: publishedChaptersIds,
-                },
-                isCompleted: true
+                    in: publishedChaptersIds}
             }
         });
 
-        const progressPercentage = (validChapters / publishedChapters.length) * 100;
+        const progressPercentage =  (validCompleteChapters / publishedChapters.length) * 100;
 
         return progressPercentage;
 
