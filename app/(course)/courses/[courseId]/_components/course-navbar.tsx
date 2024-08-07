@@ -1,4 +1,6 @@
+import NavBarRoutes from "@/components/navbar-routes";
 import { Chapter, Course, UserProgress } from "@prisma/client";
+import CourseMobileSidebar from "./course-mobile-sidebar";
 interface CourseNavBarProps {
     course: Course & {
         chapters: (Chapter & {
@@ -9,7 +11,12 @@ interface CourseNavBarProps {
 }
 
 const CourseNavBar = ({ course, progressCount }: CourseNavBarProps) => {
-    return <div>CourseNavBar</div>;
+    return (
+        <div className="flex items-center bg-white p-4 border-b shadow-sm">
+            <CourseMobileSidebar course={course} progressCount={progressCount}/>
+            <NavBarRoutes />
+        </div>
+    );
 };
 
 export default CourseNavBar;

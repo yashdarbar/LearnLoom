@@ -43,13 +43,13 @@ const CourseLayout =  async ({children, params}: {children: React.ReactNode; par
 
   return (
       <div className="h-full">
-        <div className="h-[80px] md:pl-80 w-full inset-y-0 z-50">
+        <div className="h-[80px] md:pl-80 fixed w-full inset-y-0 z-50">
           <CourseNavBar
           course={course}
           progressCount={progressCount}
           />
         </div>
-        <div className="hidden md:flex flex-col w-80 fixed inset-y-0 z-50">
+        <div className="hidden md:flex h-full flex-col w-80 fixed inset-y-0 z-50">
           <CourseSideBar
           course={course}
           progressCount={progressCount}
