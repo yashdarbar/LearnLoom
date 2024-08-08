@@ -30,7 +30,7 @@ const CourseSideBar = async ({ course, progressCount }: CourseSideBarProps) => {
     });
 
     return (
-        <div className="h-full flex flex-col w-full border-r shadow-sm overflow-y-auto">
+        <div className="h-full flex flex-col w-full border-r shadow-sm overflow-y-auto dark:bg-black">
             <div className="p-8 border-b shadow-sm flex flex-col">
                 <h1 className="font-semibold">{course.title}</h1>
                 {/* //check the purshece and add progres */}

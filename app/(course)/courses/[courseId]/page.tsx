@@ -2,7 +2,7 @@ import React from 'react'
 
 const CourseIdPage = () => {
   return (
-    <div>Watch the course</div>
+    <div className='dark:bg-black'>Watch the course</div>
   )
 }
 

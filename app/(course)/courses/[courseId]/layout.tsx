@@ -42,8 +42,8 @@ const CourseLayout =  async ({children, params}: {children: React.ReactNode; par
   const progressCount = await getProgress(userId, course.id);
 
   return (
-      <div className="h-full">
-        <div className="h-[80px] md:pl-80 fixed w-full inset-y-0 z-50">
+      <div className="h-full dark:bg-black">
+        <div className="h-[80px] md:pl-80 fixed w-full inset-y-0 z-50 dark:bg-black">
           <CourseNavBar
           course={course}
           progressCount={progressCount}
