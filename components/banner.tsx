@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { AlertTriangle, CheckCircleIcon } from "lucide-react";
 
 const bannerVariants = cva(
-    "border text-center p-4 text-sm flex items-center w-full mt-[-35px]",
+    "border text-center p-4 text-sm flex items-center w-full",
     {
         variants: {
             variant: {
@@ -29,7 +29,7 @@ const iconMap = {
 const Banner = ({label, variant}: BannerProps) => {
     const Icon = iconMap[variant || 'warning']
 
-    return <div className={cn(bannerVariants({ variant}))}>
+    return <div className={cn(bannerVariants({variant}))}>
         <Icon className="h-4 w-4 mr-2"/>
         {label}
     </div>;
