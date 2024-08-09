@@ -27,7 +27,7 @@ const CoursesSideItem = ({
     const isActive = pathname?.includes(id);
 
     const onClick = () => {
-        router.push(`courses/${courseId}/chapter/${id}`);
+        router.push(`courses/${courseId}/chapters/${id}`);
     };
 
     return (
