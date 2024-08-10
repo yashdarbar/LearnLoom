@@ -31,6 +31,7 @@ const VideoPlayer = ({
 }: VideoPlayerProps) => {
 
     const [isReady, setIsReady] = useState(false);
+
     return (
         <div className="relative aspect-video">
             {!isReady && !isLocked && (
@@ -45,8 +46,16 @@ const VideoPlayer = ({
                 </div>
             )}
             {!isLocked && (
-                <MuxPlayer className={cn(!isReady && "hidden")} title={title} onCanPlay={()=>{setIsReady(true);}}
-                playbackId={playbackId} onEnded={()=>{}} autoPlay></MuxPlayer>
+                <MuxPlayer
+                    className={cn(!isReady && "hidden")}
+                    title={title}
+                    onCanPlay={() =>
+                        setIsReady(true)
+                    }
+                    playbackId={playbackId}
+                    onEnded={() => {}}
+                    autoPlay
+                />
             )}
         </div>
     );
