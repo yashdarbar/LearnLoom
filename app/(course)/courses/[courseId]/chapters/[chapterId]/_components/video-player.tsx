@@ -29,7 +29,27 @@ const VideoPlayer = ({
     isLocked,
     completeOnEnd,
 }: VideoPlayerProps) => {
-    return <div>VideoPlayer</div>;
+
+    const [isReady, setIsReady] = useState(false);
+    return (
+        <div className="relative aspect-video">
+            {!isReady && !isLocked && (
+                <div className="absolute flex inset-0 items-center justify-center bg-slate-800">
+                    <Loader2 className="h-8 w-8 animate-spin text-secondary" />
+                </div>
+            )}
+            {isLocked && (
+                <div className="absolute flex inset-0 items-center justify-center flex-col bg-slate-800 text-secondary gap-y-2">
+                    <Lock className="h-8 w-8" />
+                    <p className="text-sm">This chapter is locked</p>
+                </div>
+            )}
+            {!isLocked && (
+                <MuxPlayer className={cn(!isReady && "hidden")} title={title} onCanPlay={()=>{setIsReady(true);}}
+                playbackId={playbackId} onEnded={()=>{}} autoPlay></MuxPlayer>
+            )}
+        </div>
+    );
 };
 
 export default VideoPlayer;
