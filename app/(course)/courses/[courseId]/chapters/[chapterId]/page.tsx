@@ -3,6 +3,7 @@ import Banner from "@/components/banner";
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation";
 import VideoPlayer from "./_components/video-player";
+import CourseEnrollButton from "./_components/course-enroll-button";
 
 
 const ChapterId =  async ({params}: {params: {
@@ -55,17 +56,32 @@ const ChapterId =  async ({params}: {params: {
               </div>
           )}
           <div className="flex flex-col max-w-4xl mx-auto pb-20">
-            <div className="p-4">
-              <VideoPlayer
-                chapterId={params.chapterId}
-                courseId={params.courseId}
-                title={chapter.title}
-                isLocked={isLocked}
-                playbackId={muxData?.playbackId!}
-                nextChapterId={nextChapter?.id}
-                completeOnEnd={completeOnEnd}
-              />
-            </div>
+              <div className="p-4">
+                  <VideoPlayer
+                      chapterId={params.chapterId}
+                      courseId={params.courseId}
+                      title={chapter.title}
+                      isLocked={isLocked}
+                      playbackId={muxData?.playbackId!}
+                      nextChapterId={nextChapter?.id}
+                      completeOnEnd={completeOnEnd}
+                  />
+              </div>
+              <div>
+                  <div className="p-4 flex flex-col md:flex-row items-center justify-between">
+                      <h2 className="font-semibold text-2xl mb-2">
+                          {chapter.title}
+                      </h2>
+                      {purchase ? (
+                          <div></div>
+                      ) : (
+                          <CourseEnrollButton
+                              price={course.price!}
+                              courseId={params.courseId}
+                          />
+                      )}
+                  </div>
+              </div>
           </div>
       </div>
   );
