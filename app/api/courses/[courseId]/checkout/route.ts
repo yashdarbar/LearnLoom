@@ -80,7 +80,7 @@ export async function POST(
             customer: stripeCustomer.stripeCustomerId,
             metadata: {
                 userId: user.id,
-                courses: course.id,
+                courseId: course.id,
             },
             success_url: `${process.env.NEXT_APP_URL}/courses/${course.id}?success=1`,
             cancel_url: `${process.env.NEXT_APP_URL}/courses/${course.id}?cancel=1`,
