@@ -29,8 +29,34 @@ const VideoPlayer = ({
     isLocked,
     completeOnEnd,
 }: VideoPlayerProps) => {
-
+    const router = useRouter();
     const [isReady, setIsReady] = useState(false);
+    const confetti = useConfettiStore();
+
+    const onEnd = async () => {
+        try {
+            if (completeOnEnd) {
+                await axios.put(
+                    `/api/courses/${courseId}/chapters/${chapterId}/progress`,
+                    {
+                        isCompleted: true,
+                    }
+                );
+                if (!nextChapterId) {
+                    confetti.onOpen();
+                }
+
+                toast.success("Progress updated");
+                router.refresh();
+
+                if (nextChapterId) {
+                    router.push(`/api/courses/${courseId}/chapters/${nextChapterId}`);
+                }
+            }
+        } catch (error) {
+            toast.error("something went wrong");
+        }
+    };
 
     return (
         <div className="relative aspect-video">
@@ -49,11 +75,9 @@ const VideoPlayer = ({
                 <MuxPlayer
                     className={cn(!isReady && "hidden")}
                     title={title}
-                    onCanPlay={() =>
-                        setIsReady(true)
-                    }
+                    onCanPlay={() => setIsReady(true)}
                     playbackId={playbackId}
-                    onEnded={() => {}}
+                    onEnded={onEnd}
                     autoPlay
                 />
             )}
