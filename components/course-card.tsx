@@ -36,7 +36,7 @@ const CourseCard = ({
                     <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
                         <div className="flex items-center gap-x-1 text-slate-500">
                             <IconBagde icon={BookOpen} size="sm"/>
-                            <span >{chaptersLength} {chaptersLength === 1 ? "chapter": "chapters"}</span>
+                            <span className="ml-1"> {chaptersLength} {chaptersLength === 1 ? "chapter": "chapters"}</span>
                         </div>
                     </div>
                     {progress !== null ? (
