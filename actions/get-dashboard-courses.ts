@@ -1,11 +1,10 @@
 import { db } from "@/lib/db";
 import { Course, Category, Chapter } from "@prisma/client"
 import { getProgress } from "./get-progress";
-import { NextResponse } from "next/server";
 
 
 type CourseWithProgressWithCategory = Course &  {
-    chapter: Chapter[],
+    chapters: Chapter[],
     progress: number | null,
     category: Category
 }
@@ -57,31 +56,6 @@ export async function getDashBoardCourses(userId: string): Promise<DashBoardCour
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // type CourseWithProgressWithCategory = Course & {
