@@ -45,7 +45,7 @@ const ChapterId = async ({
     const isLocked = !chapter?.isFree && !purchase;
     const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
-    console.log("idid", muxData?.playbackId);
+    //console.log("idid", muxData?.playbackId);
 
     return (
         <div>
