@@ -10,6 +10,7 @@ import ToasterProvider from "@/components/providers/toaster-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
 
+
 export default function RootLayout({
     children,
 }: {
@@ -18,6 +19,7 @@ export default function RootLayout({
     return (
         <ClerkProvider>
             <html lang="en">
+                {/* <meta httpEquiv="Content-Security-Policy" content="font-src 'self' https://js.stripe.com;"/> */}
                 <body>
                     <div className="ml-56">
                         <SignedOut>
