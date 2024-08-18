@@ -6,7 +6,7 @@ export async function DELETE(
     req: Request,
     { params }: { params: { courseId: string; attachmentId: string } }
 ) {
-    console.log("api", params.attachmentId);
+    //console.log("api", params.attachmentId);
     try {
         const { userId } = auth();
 
