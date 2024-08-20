@@ -2,8 +2,6 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { File, Loader2, PlusCircle, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

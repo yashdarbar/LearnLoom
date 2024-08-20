@@ -2,8 +2,6 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { Pencil, PlusCircle, Video } from "lucide-react";
 import  MuxPlayer  from "@mux/mux-player-react"
 
