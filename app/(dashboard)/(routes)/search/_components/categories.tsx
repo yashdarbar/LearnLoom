@@ -1,6 +1,6 @@
 "use client";
 
-import { Category } from "@prisma/client";
+import { Category } from "@/src/app/generated/client";
 import React from "react";
 import { IconType } from "react-icons";
 import {
