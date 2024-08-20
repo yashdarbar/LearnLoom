@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { Course, Category, Chapter } from "@prisma/client"
+import { Course, Category, Chapter } from "@/src/app/generated/client"
 import { getProgress } from "./get-progress";
 
 

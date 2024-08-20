@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { Attachment, Chapter } from "@prisma/client";
+import { Attachment, Chapter } from "@/src/app/generated/client";
 
 
 interface GetChapterProps {
