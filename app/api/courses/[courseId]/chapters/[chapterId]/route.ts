@@ -4,8 +4,9 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 const mux = new Mux({
-    tokenId: process.env.MUX_TOKEN_ID as string,
-    tokenSecret: process.env.MUX_TOKEN_SECRET as string,
+    tokenId: "f1e4c75e-74eb-45d5-87d3-1019c9580a23", //process.env.MUX_TOKEN_ID as string,
+    tokenSecret:
+        "jaz3JnDGoaAaSz78iiW2N9l2u4ms2xpqu+I//WsDePBCajyU3MSL435anXRgfg9diZy2c2WQgIr", //process.env.MUX_TOKEN_SECRET as string,
 });
 
 const { video } = mux;
