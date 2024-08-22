@@ -15,23 +15,25 @@ import {
 import CategoryItem from "./category-item";
 
 interface CategoriesProps {
-    items: Category[];
+    items: Category[] | undefined;
 }
 
 const iconMap: Record<Category["name"], IconType> = {
-    "Music": FcMusic,
-    "Filming": FcOldTimeCamera,
-    "Fitness": FcSportsMode,
-    "Engineering": FcEngineering,
-    "Accounting": FcSalesPerformance,
+    Music: FcMusic,
+    Filming: FcOldTimeCamera,
+    Fitness: FcSportsMode,
+    Engineering: FcEngineering,
+    Accounting: FcSalesPerformance,
     "Computer Science": FcMultipleDevices,
     "Graphic Design": FcGallery,
 };
 
 const Categories = ({ items }: CategoriesProps) => {
+
+
     return (
         <div className="flex items-center overflow-x-auto pb-2 gap-x-2">
-            {items.map((item) => (
+            {items?.map((item) => (
                 <CategoryItem
                     key={item.id}
                     label={item.name}
